@@ -1,0 +1,1 @@
+[{"name":"anmol","email":"sharma.anmol7837@gmail.com","password":"anmol"},{"name":"Anmolsharma","email":"anmol.213077@maimt.com","password":"anmol"},{"name":"pawan","email":"guptapawan@gmail.com","password":"pawan"}]

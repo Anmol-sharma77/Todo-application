@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            width: 600px;
+            height: 400px;
+            border: 1px solid #ccc;
+            overflow: hidden;
+        }
+
+        .left-side {
+            flex: 2;
+            padding: 10px;
+            border-right: 1px solid #ccc;
+            overflow-y: auto;
+        }
+
+        .right-side {
+            flex: 1;
+            padding: 10px;
+        }
+
+        .todo-item {
+            display: flex;
+            align-items: center;
+            margin: 5px 0;
+        }
+
+        input[type="checkbox"] {
+            float: right;
+        }
+
+        .cross-btn {
+            cursor: pointer;
+            color: red;
+        }
+        .item{
+          text-decoration: line-through;  
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="left-side">
+            <div class="todo-item">
+                <input type="checkbox" id="todo1">
+                <label for="todo1">Buy groceries</label>
+                <span class="cross-btn">&times;</span>
+            </div>
+            <div class="todo-item">
+                <input type="checkbox" id="todo2">
+                <label for="todo2">Do laundry</label>
+                <span class="cross-btn">&times;</span>
+            </div>
+            <!-- Add more todo items here -->
+        </div>
+        <div class="right-side">
+            <input type="text" id="newTodo" placeholder="Enter new todo...">
+            <button onclick="addTodo()">Add Todo</button>
+        </div>
+    </div>
+
+    <script>
+        function addTodo() {
+            const newTodoText = document.getElementById('newTodo').value.trim();
+            if (newTodoText !== '') {
+                const todoItem = document.createElement('div');
+                todoItem.classList.add('todo-item');
+
+                const checkbox = document.createElement('input');
+                checkbox.type = 'checkbox';
+
+                const label = document.createElement('label');
+                label.textContent = newTodoText;
+
+                const crossBtn = document.createElement('span');
+                crossBtn.textContent = '\u00D7';
+                crossBtn.classList.add('cross-btn');
+                crossBtn.addEventListener('click', function() {
+                    this.parentNode.remove();
+                });
+                todoItem.appendChild(label);
+                todoItem.appendChild(checkbox);
+                todoItem.appendChild(crossBtn);
+                checkbox.addEventListener("click",function(){
+                    label.classList.toggle("item");
+                })
+
+                document.querySelector('.left-side').appendChild(todoItem);
+
+                document.getElementById('newTodo').value = '';
+            }
+        }
+    </script>
+</body>
+</html>
